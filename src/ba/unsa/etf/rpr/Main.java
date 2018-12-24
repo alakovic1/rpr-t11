@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -7,10 +9,13 @@ public class Main {
         glavniGrad();
     }
 
-    private static void glavniGrad() {
+    public static void glavniGrad() {
+        System.out.println("Unesite naziv drzave: ");
+        Scanner ulaz = new Scanner(System.in);
+        String naziv = ulaz.nextLine();
     }
 
-    private static String ispisiGradove() {
+    public static String ispisiGradove() {
         return null;
     }
 }
