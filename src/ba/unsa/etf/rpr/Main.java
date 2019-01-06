@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         baza = GeografijaDAO.getInstance();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gui.fxml"));
         loader.setController(new GUIController(baza));
         Parent root = loader.load();
         primaryStage.setTitle("Gradovi");
