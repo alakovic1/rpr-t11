@@ -5,16 +5,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class GeografijaDAO {
-    private static GeografijaDAO instance;
+    private static GeografijaDAO dao;
     private static Connection connection;
 
     public static void removeInstance() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        instance = null;
+        dao = null;
     }
 
     private static PreparedStatement ubaci_drzavu = null;
@@ -27,7 +22,7 @@ public class GeografijaDAO {
     private GeografijaDAO() {
         connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:Baza.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:baza.db");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -41,7 +36,7 @@ public class GeografijaDAO {
                 statement1.execute("CREATE TABLE grad(id integer primary key, naziv varchar(255), broj_stanovnika INTEGER,drzava integer) ");
                 statement1.closeOnCompletion();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Greska " + e.getMessage());
                 statement = connection.prepareStatement("delete from drzava");
                 statement.execute();
                 statement = connection.prepareStatement("delete from grad");
@@ -50,7 +45,6 @@ public class GeografijaDAO {
             statement = connection.prepareStatement("SELECT * from drzava");
             ubaci_drzavu = connection.prepareStatement("INSERT INTO drzava VALUES(?,?,?)");
             ubaci_grad = connection.prepareStatement("INSERT INTO grad VALUES (?,?,?,?)");
-
             if (true) {
                 ubaci_drzavu.setInt(1, 1);
                 ubaci_drzavu.setString(2, "Austrija");
@@ -90,12 +84,12 @@ public class GeografijaDAO {
                 ubaci_grad.setInt(4, 1);
                 ubaci_grad.execute();
                 ubaci_grad.close();
-
                 PreparedStatement x = connection.prepareStatement("update table drzava set glavni_grad = 1 where id = 3");
                 x.execute();
                 x = connection.prepareStatement("update table drzava set glavni_grad = 2 where id = 4");
                 x.execute();
                 x = connection.prepareStatement("update table drzava set glavni_grad = 5 where id = 1");
+
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -113,12 +107,12 @@ public class GeografijaDAO {
 
 
     private static void initialize() {
-        instance = new GeografijaDAO();
+        dao = new GeografijaDAO();
     }
 
     public static GeografijaDAO getInstance() {
-        if (instance == null) initialize();
-        return instance;
+        if (dao == null) initialize();
+        return dao;
     }
 
     public ArrayList<Grad> gradovi() {
@@ -132,6 +126,7 @@ public class GeografijaDAO {
                 int drId = tabGrad.getInt(4);
                 Drzava drzava;
                 while (tabDrzava.next()) {
+
                     int id = tabDrzava.getInt(1);
                     if (id == drId) {
                         drzava = new Drzava();
@@ -173,6 +168,7 @@ public class GeografijaDAO {
                     id = res.getInt(3);
                 }
             }
+
             getGrad.setInt(1, id);
             res = getGrad.executeQuery();
             if (!res.next()) {
@@ -191,6 +187,8 @@ public class GeografijaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
         return null;
     }
 
@@ -212,6 +210,7 @@ public class GeografijaDAO {
             statement = connection.prepareStatement("delete from grad where drzava=?");
             statement.setInt(1, id);
             statement.execute();
+            //System.out.println(id);
             statement = connection.prepareStatement("delete from drzava where id=?");
             statement.setInt(1, id);
             statement.execute();
@@ -223,6 +222,7 @@ public class GeografijaDAO {
     public Drzava nadjiDrzavu(String drzava) {
 
         try {
+
             getDrzava.setString(1, drzava);
             ResultSet set = getDrzava.executeQuery();
             if (set.isClosed()) {
@@ -305,16 +305,15 @@ public class GeografijaDAO {
                 set = stm.executeQuery("select count(*) from grad");
                 set.next();
                 int b = set.getInt(1) + 3;
-
                 ubaci_drzavu.setInt(3, b);
-                //System.out.println(ubaci_drzavu.execute() + " ");
+                System.out.println(ubaci_drzavu.execute() + " ");
                 dodajGrad(drzava.getGlavniGrad());
-
-
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+
     }
 
     public void izmijeniGrad(Grad grad) {
