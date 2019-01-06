@@ -23,6 +23,9 @@ public class GeografijaDAO {
         connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:baza.db");
+            //pokusaj povezivanja na Oracle
+            /*Class.forName("oracle.jdbc.driver.OracleDriver");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@ora.db.lab.ri.etf.unsa.ba:1521:ETFLAB","AL18117","dvE3Om68");*/
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
