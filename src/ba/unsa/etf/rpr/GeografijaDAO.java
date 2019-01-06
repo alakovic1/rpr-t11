@@ -23,9 +23,11 @@ public class GeografijaDAO {
         connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:baza.db");
+
             //pokusaj povezivanja na Oracle
             /*Class.forName("oracle.jdbc.driver.OracleDriver");
             connection = DriverManager.getConnection("jdbc:oracle:thin:@ora.db.lab.ri.etf.unsa.ba:1521:ETFLAB","AL18117","dvE3Om68");*/
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -33,7 +35,6 @@ public class GeografijaDAO {
             PreparedStatement statement = null;
             Statement statement1 = null;
             try {
-
                 statement1 = connection.createStatement();
                 statement1.execute("CREATE TABLE drzava(id INTEGER PRIMARY KEY ,naziv varchar(255) not null, glavni_grad integer )");
                 statement1.execute("CREATE TABLE grad(id integer primary key, naziv varchar(255), broj_stanovnika INTEGER,drzava integer) ");
@@ -92,12 +93,10 @@ public class GeografijaDAO {
                 x = connection.prepareStatement("update table drzava set glavni_grad = 2 where id = 4");
                 x.execute();
                 x = connection.prepareStatement("update table drzava set glavni_grad = 5 where id = 1");
-
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         try {
             dajGradove = connection.prepareStatement("select * from grad");
             dajDrzave = connection.prepareStatement("select * from drzava");
@@ -107,7 +106,6 @@ public class GeografijaDAO {
             System.out.println(e.getMessage());
         }
     }
-
 
     private static void initialize() {
         dao = new GeografijaDAO();
@@ -141,7 +139,6 @@ public class GeografijaDAO {
                         grad.setDrzava(drzava);
                         break;
                     }
-
                 }
                 gradovi.add(grad);
             }
@@ -190,8 +187,6 @@ public class GeografijaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         return null;
     }
 
@@ -223,9 +218,7 @@ public class GeografijaDAO {
     }
 
     public Drzava nadjiDrzavu(String drzava) {
-
         try {
-
             getDrzava.setString(1, drzava);
             ResultSet set = getDrzava.executeQuery();
             if (set.isClosed()) {
@@ -315,8 +308,6 @@ public class GeografijaDAO {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     public void izmijeniGrad(Grad grad) {

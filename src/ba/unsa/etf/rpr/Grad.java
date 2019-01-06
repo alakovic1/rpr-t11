@@ -1,11 +1,13 @@
 package ba.unsa.etf.rpr;
 
 public class Grad {
-    private String nazivGrada ;
+    private String nazivGrada;
     private Drzava drzava;
     private int brojStanovnika;
 
-    public Grad(){}
+    public Grad() {
+    }
+
     public Grad(String nazivGrada, Drzava drzava, int brojStanovnika) {
         setNaziv(nazivGrada);
         setDrzava(drzava);
@@ -34,5 +36,12 @@ public class Grad {
 
     public void setBrojStanovnika(int brojStanovnika) {
         this.brojStanovnika = brojStanovnika;
+    }
+
+    @Override
+    public String toString() {
+        String ispis = "";
+        ispis += getNaziv() + " (" + getDrzava().getNaziv() + ") - " + getBrojStanovnika() + "\n";
+        return ispis;
     }
 }

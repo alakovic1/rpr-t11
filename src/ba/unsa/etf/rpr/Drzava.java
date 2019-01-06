@@ -5,7 +5,8 @@ public class Drzava {
     private String naziv;
     private Grad glavniGrad;
 
-    public Drzava() {}
+    public Drzava() {
+    }
 
     public Drzava(int id, String naziv, Grad glavniGrad) {
         setId(id);
