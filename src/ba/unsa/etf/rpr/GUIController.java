@@ -70,19 +70,19 @@ public class GUIController {
     }
 
     public void setBos(ActionEvent actionEvent) {
-        izaberi(new Locale("Bos","BIH"));
+        izaberi(new Locale("bs","BIH"));
     }
 
     public void setEng(ActionEvent actionEvent) {
-        izaberi(new Locale("Eng","US"));
+        izaberi(new Locale("en","US"));
     }
 
     public void setNJem(ActionEvent actionEvent) {
-        izaberi(new Locale("Njem","DE"));
+        izaberi(new Locale("de","DE"));
     }
 
     public void setFran(ActionEvent actionEvent) {
-        izaberi(new Locale("Fran","FR"));
+        izaberi(new Locale("fr","FR"));
     }
 
     public void pozivGradoviD(ActionEvent actionEvent) {

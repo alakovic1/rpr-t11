@@ -21,7 +21,7 @@ public class Main extends Application {
         /*baza = GeografijaDAO.getInstance();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gui.fxml"));
         loader.setController(new GUIController(baza));*/
-        Locale.setDefault(new Locale("Bos","BIH"));
+        Locale.setDefault(new Locale("bs","BIH"));
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/gui.fxml"), bundle);
         loader.setController(new GUIController(baza));
