@@ -116,6 +116,10 @@ public class GeografijaDAO {
         return dao;
     }
 
+    public static Connection getConnection() {
+        return connection;
+    }
+
     public ArrayList<Grad> gradovi() {
         ArrayList<Grad> gradovi = new ArrayList<>();
         try {

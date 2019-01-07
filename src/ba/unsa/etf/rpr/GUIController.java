@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,8 +67,6 @@ public class GUIController {
             return;
         }
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        //primaryStage.setMinWidth(640);
-        //primaryStage.setMinHeight(480);
     }
 
     public void setBos(ActionEvent actionEvent) {
@@ -96,5 +95,12 @@ public class GUIController {
     }
 
     public void ispis(ActionEvent actionEvent) {
+        baza = GeografijaDAO.getInstance();
+        GradoviReport report = new GradoviReport();
+        try {
+            report.showReport(GeografijaDAO.getConnection());
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 }
