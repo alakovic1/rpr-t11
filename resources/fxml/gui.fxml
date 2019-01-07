@@ -1,28 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="428.0"
-          prefWidth="371.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
-    <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="402.0" minHeight="10.0" prefHeight="359.0" vgrow="SOMETIMES"/>
-    </rowConstraints>
-    <children>
-        <HBox prefHeight="100.0" prefWidth="200.0">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="ispisiBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                        onAction="#ispisi" prefHeight="251.0" prefWidth="619.0" text="Ispis gradova"/>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#save" text="Save As" />
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%pogled">
+                            <items>
+                                <Menu mnemonicParsing="false" text="%jezik">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#setBos" text="Bosanski" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setEng" text="English" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setNJem" text="Deutsch" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setFran" text="Français" />
+                                    </items>
+                                </Menu>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox spacing="4.0">
+                    <children>
+
+                        <Button mnemonicParsing="false" text="%unesiGrad" />
+                        <Button mnemonicParsing="false" text="%unesiDrzavu" />
+                        <Button fx:id="dugmeNadjiGrad" layoutX="303.0" layoutY="97.0" mnemonicParsing="false" onAction="#nadjiGlavniGrad" text="%nadjiGrad" />
+                        <Button fx:id="dugmeBrisiDrzavu" layoutX="303.0" layoutY="215.0" mnemonicParsing="false" onAction="#obrisiDrzavuINjeneGradove" text="%obrisiDrzavu" />
+                        <Button mnemonicParsing="false" onAction="#ispis" text="%izvjestaj" />
+                        <Button mnemonicParsing="false" onAction="#pozivGradoviD" text="%izvjestajDrzave" />
+
+                    </children>
+                    <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </padding>
+                </HBox>
             </children>
-        </HBox>
-        <ListView fx:id="lista" prefHeight="341.0" prefWidth="0.0" GridPane.rowIndex="1"/>
-    </children>
-</GridPane>
+        </VBox>
+    </top>
+    <center>
+        <ListView BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>

@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -16,8 +18,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        baza = GeografijaDAO.getInstance();
+        /*baza = GeografijaDAO.getInstance();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gui.fxml"));
+        loader.setController(new GUIController(baza));*/
+        Locale.setDefault(new Locale("Bos"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/gui.fxml" ), bundle);
         loader.setController(new GUIController(baza));
         Parent root = loader.load();
         primaryStage.setTitle("Gradovi");
