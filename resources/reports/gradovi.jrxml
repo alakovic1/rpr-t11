@@ -33,12 +33,12 @@ order by g.broj_stanovnika desc;]]>
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="bcf29663-c4b8-483e-a197-e5f6920fd2a2"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Violet Title]]></text>
+				<text><![CDATA[Amila's database]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="63" y="46" width="200" height="22" uuid="c089ef81-84c2-4243-a7e9-0e0a8992e71a"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Leaf Violet SubTitle]]></text>
+				<text><![CDATA[Izvjestaj]]></text>
 			</staticText>
 		</band>
 	</title>
