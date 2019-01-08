@@ -60,7 +60,7 @@
 	</subDataset>
 	<parameter name="drzavaParam" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT Grad.id, Grad.naziv, brojStanovnika, Drzava, Drzava.id as d_id, Drzava.naziv as d_naziv, Drzava.glavniGrad as d_gg FROM Grad INNER JOIN Drzava ON Grad.drzava = Drzava.id WHERE Drzava.naziv=$P{drzavaParam} ORDER BY brojStanovnika DESC]]>
+		<![CDATA[SELECT Grad.id, Grad.naziv, broj_stanovnika, Drzava, Drzava.id as d_id, Drzava.naziv as d_naziv, Drzava.glavni_grad as d_gg FROM Grad INNER JOIN Drzava ON Grad.drzava = Drzava.id WHERE Drzava.naziv=$P{drzavaParam} ORDER BY broj_stanovnika DESC]]>
 	</queryString>
 	<field name="id" class="java.lang.Object">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -70,8 +70,8 @@
 		<property name="com.jaspersoft.studio.field.label" value="naziv"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="gradovi"/>
 	</field>
-	<field name="brojStanovnika" class="java.lang.Object">
-		<property name="com.jaspersoft.studio.field.label" value="brojStanovnika"/>
+	<field name="broj_stanovnika" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="broj_stanovnika"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="gradovi"/>
 	</field>
 	<field name="d_naziv" class="java.lang.Object">
@@ -80,7 +80,7 @@
 	</field>
 	<sortField name="id" order="Descending"/>
 	<sortField name="naziv" order="Descending"/>
-	<sortField name="brojStanovnika" order="Descending"/>
+	<sortField name="broj_stanovnika" order="Descending"/>
 	<sortField name="d_naziv" order="Descending"/>
 	<group name="Gruppo1">
 		<groupExpression><![CDATA[$F{id}]]></groupExpression>
@@ -105,7 +105,7 @@
 					<textElement>
 						<font fontName="Arial" size="16" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{brojStanovnika}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{broj_stanovnika}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement positionType="Float" x="350" y="2" width="180" height="20" forecolor="#000000" uuid="f031fceb-9c79-4d1c-b777-77529c26bf20"/>
@@ -126,8 +126,8 @@
 	<group name="naziv">
 		<groupExpression><![CDATA[$F{naziv}]]></groupExpression>
 	</group>
-	<group name="brojStanovnika">
-		<groupExpression><![CDATA[$F{brojStanovnika}]]></groupExpression>
+	<group name="broj_stanovnika">
+		<groupExpression><![CDATA[$F{broj_stanovnika}]]></groupExpression>
 	</group>
 	<group name="d_naziv">
 		<groupExpression><![CDATA[$F{d_naziv}]]></groupExpression>

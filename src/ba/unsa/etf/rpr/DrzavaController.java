@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DrzavaController implements Initializable {
-    public ComboBox<String> drzavaCombo;
+    public ComboBox<String> drzava;
     private ObservableList<String> listaDrzava = FXCollections.observableArrayList();
     ArrayList<Drzava> drzave;
 
@@ -27,13 +27,14 @@ public class DrzavaController implements Initializable {
         for (Drzava d: drzave) {
             listaDrzava.add(d.getNaziv());
         }
-        drzavaCombo.setItems(listaDrzava);
+        drzava.setItems(listaDrzava);
     }
 
-    public void kreirajIzvjestaj(ActionEvent actionEvent) {
+
+    public void izvjestaj(ActionEvent actionEvent) {
         GradoviReport gradoviReport = new GradoviReport();
         try {
-            gradoviReport.showReportDrzava(GeografijaDAO.getConnection(), drzavaCombo.getValue());
+            gradoviReport.showReportDrzava(GeografijaDAO.getConnection(), drzava.getValue());
         }
         catch (JRException ex) {
             ex.printStackTrace();

@@ -1,14 +1,15 @@
 package ba.unsa.etf.rpr;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -16,13 +17,19 @@ import net.sf.jasperreports.engine.JRException;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class GUIController {
-    public ListView lista;
+public class GUIController implements Initializable {
+    public TableView lista;
+    public TableColumn id;
+    public TableColumn naziv;
+    public TableColumn brojStanovnika;
+    public TableColumn drzava;
     //public Button ispisiBtn;
     private GeografijaDAO baza;
     public ObservableList<Grad> gradovi;
@@ -31,6 +38,7 @@ public class GUIController {
     public Button dugmeBrisiDrzavu;
     public Label opcija;
     public BorderPane mainPane;
+    private ResourceBundle bundle;
 
     public GUIController(GeografijaDAO baza) {
         this.baza = baza;
@@ -86,19 +94,19 @@ public class GUIController {
     }
 
     public void pozivGradoviD(ActionEvent actionEvent) {
-        baza = GeografijaDAO.getInstance();
-        GradoviReport report = new GradoviReport();
         try {
-            report.showReportDrzava(GeografijaDAO.getConnection(),"Velika Britanija");
-        } catch (JRException e) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            fxmlLoader.setResources(bundle);
+            fxmlLoader.setLocation(getClass().getResource("/fxml/drzava.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            Stage stage = new Stage();
+            stage.setTitle("Izbor");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void nadjiGlavniGrad(ActionEvent actionEvent) {
-    }
-
-    public void obrisiDrzavuINjeneGradove(ActionEvent actionEvent) {
     }
 
     public void ispis(ActionEvent actionEvent) {
@@ -109,5 +117,23 @@ public class GUIController {
         } catch (JRException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bundle = resources;
+        ObservableList<Grad> listaGradova = FXCollections.observableArrayList();
+        ArrayList<Grad> gradovi = GeografijaDAO.getInstance().gradovi();
+        naziv.setCellValueFactory(new PropertyValueFactory("naziv"));
+        brojStanovnika.setCellValueFactory(new PropertyValueFactory("brojStanovnika"));
+        drzava.setCellValueFactory(new PropertyValueFactory("drzava"));
+        for (Grad g : gradovi) {
+            listaGradova.add(g);
+        }
+        lista.setItems(listaGradova);
+    }
+
+    public void izadji(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }
