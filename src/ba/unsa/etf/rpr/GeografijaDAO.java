@@ -337,4 +337,22 @@ public class GeografijaDAO {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Drzava> drzave() {
+        ArrayList<Drzava> rezultat = new ArrayList<Drzava>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT id, naziv, glavniGrad FROM Drzava");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Drzava d = new Drzava();
+                d.setId(rs.getInt(1));
+                d.setNaziv(rs.getString(2));
+                rezultat.add(d);
+            }
+            return rezultat;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

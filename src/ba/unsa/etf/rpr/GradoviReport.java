@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GradoviReport extends JFrame{
+
     public void showReport(Connection conn) throws JRException {
         String reportSrcFile = getClass().getResource("/reports/gradovi.jrxml").getFile();
         String reportsDir = getClass().getResource("/reports/").getFile();
@@ -64,7 +65,7 @@ public class GradoviReport extends JFrame{
     }
 
     public void showReportDrzava(Connection conn, String drzava) throws JRException {
-        String reportSrcFile = getClass().getResource("/reports/gradoviD.jrxml").getFile();
+        String reportSrcFile = getClass().getResource("/reports/izvjestajnovi.jrxml").getFile();
         String reportsDir = getClass().getResource("/reports/").getFile();
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
 

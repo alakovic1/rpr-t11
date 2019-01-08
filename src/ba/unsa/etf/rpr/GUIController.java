@@ -86,6 +86,13 @@ public class GUIController {
     }
 
     public void pozivGradoviD(ActionEvent actionEvent) {
+        baza = GeografijaDAO.getInstance();
+        GradoviReport report = new GradoviReport();
+        try {
+            report.showReportDrzava(GeografijaDAO.getConnection(),"Velika Britanija");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
     }
 
     public void nadjiGlavniGrad(ActionEvent actionEvent) {
