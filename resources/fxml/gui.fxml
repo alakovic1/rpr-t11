@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#save" text="%snimi" />
+                                <MenuItem fx:id="izadji" mnemonicParsing="false" onAction="#izadji" text="%izadji" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%pogled">
+                            <items>
+                                <Menu mnemonicParsing="false" text="%jezik">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#setBos" text="Bosanski" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setEng" text="English" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setNJem" text="Deutsch" />
+                                        <MenuItem mnemonicParsing="false" onAction="#setFran" text="Français" />
+                                    </items>
+                                </Menu>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox spacing="4.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#ispis" prefHeight="27.0" prefWidth="308.0" text="%izvjestaj" />
+                        <Button mnemonicParsing="false" onAction="#pozivGradoviD" prefHeight="27.0" prefWidth="311.0" text="%izvjestajDrzave" />
+
+                    </children>
+                    <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+   <center>
+      <TableView fx:id="lista" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="naziv" prefWidth="199.0" text="%grad" />
+            <TableColumn fx:id="brojStanovnika" prefWidth="227.0" text="%brojStanovnika" />
+            <TableColumn fx:id="drzava" prefWidth="201.0" text="%drzava" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>
